@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    repo: https://github.com/SEU_USUARIO/n8n-render.git
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_HOST
+        fromDatabase:
+          name: n8n-db
+          property: host
+      - key: DB_POSTGRESDB_PORT
+        value: "5432"
+      - key: DB_POSTGRESDB_DATABASE
+        fromDatabase:
+          name: n8n-db
+          property: database
+      - key: DB_POSTGRESDB_USER
+        fromDatabase:
+          name: n8n-db
+          property: user
+      - key: DB_POSTGRESDB_PASSWORD
+        fromDatabase:
+          name: n8n-db
+          property: password
+      - key: DB_POSTGRESDB_SCHEMA
+        value: public
+      - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: admin
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: senha123
+      - key: WEBHOOK_URL
+        value: https://n8n.onrender.com
+databases:
+  - name: n8n-db
+    region: oregon
+    plan: free
