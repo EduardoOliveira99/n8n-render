@@ -2,13 +2,13 @@ services:
   - type: web
     name: n8n
     env: docker
-    repo: https://github.com/SEU_USUARIO/n8n-render.git
+    repo: https://github.com/EduardoOliveira99/n8n-render.git
     plan: free
     region: oregon
     dockerfilePath: Dockerfile
     envVars:
       - key: DB_TYPE
-        value: postgresdb
+        value: postgres
       - key: DB_POSTGRESDB_HOST
         fromDatabase:
           name: n8n-db
@@ -39,7 +39,13 @@ services:
         value: senha123
       - key: WEBHOOK_URL
         value: https://n8n.onrender.com
+      - key: N8N_DISABLE_PRODUCTION_MAIN_MENU
+        value: "true"
+      - key: N8N_LOG_LEVEL
+        value: debug
+
 databases:
   - name: n8n-db
     region: oregon
     plan: free
+
