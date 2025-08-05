@@ -43,6 +43,8 @@ services:
         value: "true"
       - key: N8N_LOG_LEVEL
         value: debug
+      - key: N8N_ENCRYPTION_KEY
+        value: Jb+Y7xUxh/FD6X5UvfjFzmip7IOKjHqclSk2aE5lOqI=
 
 databases:
   - name: n8n-db
